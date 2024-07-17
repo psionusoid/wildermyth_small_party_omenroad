@@ -324,6 +324,7 @@
 	"recruit": {
 		"STUB": "Recruit",
 		"icon": "dungeonNode_recruit",
+		"specifyNodeVisuals": { "tooltipTextOverrideKey": "recruit" },
 		"otherOutcomes": {
 			"class": "DoAll",
 			"outcomes": [
