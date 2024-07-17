@@ -1,13 +1,13 @@
 {
 "scenarioInfo": {
-	"id": "threePageLegacy",
+	"id": "threePageLegacy4Hero",
 	"type": "DUNGEON",
-	"nameKey": "threePageLegacy.name",
-	"blurbKey": "threePageLegacy.blurb",
-	"extraDungeonModeTextKey": "threePageLegacy.extraDungeonModeText",
-	"extraDungeonModeTextTooltipKey": "threePageLegacy.extraDungeonModeTextTooltip",
+	"nameKey": "threePageLegacy4Hero.name",
+	"blurbKey": "threePageLegacy4Hero.blurb",
+	"extraDungeonModeTextKey": "threePageLegacy4Hero.extraDungeonModeText",
+	"extraDungeonModeTextTooltipKey": "threePageLegacy4Hero.extraDungeonModeTextTooltip",
 	"newGameImagePath": "assets/ui/reskin/newCampaign_omenroad3pageLegacy.png",
-	"sortNumber": 101,
+	"sortNumber": 103,
 	"perilAndOdesEnabled": true,
 	"rosterSlots": [
 		{
@@ -346,7 +346,7 @@
 			"startWithClass": true,
 			"setEquipment": "chapterMinusOne"
 		},
-		"repeatableOutcomeTest": "lessThan(COUNT.party,5)"
+		"repeatableOutcomeTest": "lessThan(COUNT.party,4)"
 	},
 	"heal": {
 		"STUB": "Heal",
@@ -1214,14 +1214,6 @@
 								"value": "(RECOVERY_RATE/20)+company.dungeon_progression_all_healingBetweenFights"
 							},
 							{
-								"class": "RecruitHero",
-								"startWithClass": true,
-								"free": true,
-								"legacyHeroCalamities": true,
-								"allowCancel": false,
-								"setEquipment": "tierOne"
-							},
-							{
 								"class": "Aspects",
 								"target": "company",
 								"addAspects": [
@@ -1554,7 +1546,7 @@
 						},
 						{
 							"pickExactNumber": true,
-							"numberToPick": "lessThan(COUNT.party,5)",
+							"numberToPick": "lessThan(COUNT.party,4)",
 							"nodes": [
 								{ "template": "recruit" }
 							]
