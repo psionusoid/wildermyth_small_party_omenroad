@@ -7,6 +7,7 @@
 	"extraDungeonModeTextKey": "threePage.extraDungeonModeText",
 	"extraDungeonModeTextTooltipKey": "threePage.extraDungeonModeTextTooltip",
 	"newGameImagePath": "assets/ui/reskin/newCampaign_omenroad3page.png",
+	"list": false,
 	"perilAndOdesEnabled": true,
 	"rosterSlots": [
 		{
