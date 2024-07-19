@@ -1,31 +1,18 @@
 {
 "scenarioInfo": {
-	"id": "threePageLegacy",
+	"id": "threePageLegacyHighCalamity1Hero",
 	"type": "DUNGEON",
-	"nameKey": "threePageLegacy.name",
-	"blurbKey": "threePageLegacy.blurb",
-	"extraDungeonModeTextKey": "threePageLegacy.extraDungeonModeText",
-	"extraDungeonModeTextTooltipKey": "threePageLegacy.extraDungeonModeTextTooltip",
+	"nameKey": "threePageLegacyHighCalamity1Hero.name",
+	"blurbKey": "threePageLegacyHighCalamity1Hero.blurb",
+	"extraDungeonModeTextKey": "threePageLegacyHighCalamity1Hero.extraDungeonModeText",
+	"extraDungeonModeTextTooltipKey": "threePageLegacyHighCalamity1Hero.extraDungeonModeTextTooltip",
 	"newGameImagePath": "assets/ui/reskin/newCampaign_omenroad3pageLegacy.png",
-	"sortNumber": 101,
-	"list": false,
+	"sortNumber": 114,
 	"perilAndOdesEnabled": true,
 	"rosterSlots": [
 		{
 			"type": "legacyHero",
 			"plotRoles": [ "party", "warrior" ]
-		},
-		{
-			"type": "legacyHero",
-			"plotRoles": [ "party", "hunter" ]
-		},
-		{
-			"type": "legacyHero",
-			"plotRoles": [ "party", "mystic" ]
-		},
-		{
-			"type": "legacyHero",
-			"plotRoles": [ "party", "hero4" ]
 		}
 	]
 },
@@ -325,6 +312,7 @@
 	"recruit": {
 		"STUB": "Recruit",
 		"icon": "dungeonNode_recruit",
+		"specifyNodeVisuals": { "tooltipTextOverrideKey": "recruit" },
 		"otherOutcomes": {
 			"class": "DoAll",
 			"outcomes": [
@@ -347,7 +335,7 @@
 			"startWithClass": true,
 			"setEquipment": "chapterMinusOne"
 		},
-		"repeatableOutcomeTest": "lessThan(COUNT.party,5)"
+		"repeatableOutcomeTest": "lessThan(COUNT.party,1)"
 	},
 	"heal": {
 		"STUB": "Heal",
@@ -949,7 +937,7 @@
 								"skipProposePopup": true,
 								"calamitiesToAdd": [
 									{
-										"quantity": "10+(3*((((party.1.legacyTier+party.2.legacyTier)+party.3.legacyTier)+party.4.legacyTier)+5))",
+										"quantity": "100",
 										"mainThreatHigherChance": false,
 										"equalCardsPerFlavor": true
 									}
@@ -1215,14 +1203,6 @@
 								"value": "(RECOVERY_RATE/20)+company.dungeon_progression_all_healingBetweenFights"
 							},
 							{
-								"class": "RecruitHero",
-								"startWithClass": true,
-								"free": true,
-								"legacyHeroCalamities": true,
-								"allowCancel": false,
-								"setEquipment": "tierOne"
-							},
-							{
 								"class": "Aspects",
 								"target": "company",
 								"addAspects": [
@@ -1261,7 +1241,7 @@
 						},
 						{
 							"pickExactNumber": true,
-							"numberToPick": "lessThan(COUNT.party,4)",
+							"numberToPick": "lessThan(COUNT.party,1)",
 							"nodes": [
 								{ "template": "recruit" }
 							]
@@ -1555,7 +1535,7 @@
 						},
 						{
 							"pickExactNumber": true,
-							"numberToPick": "lessThan(COUNT.party,5)",
+							"numberToPick": "lessThan(COUNT.party,1)",
 							"nodes": [
 								{ "template": "recruit" }
 							]

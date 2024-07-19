@@ -1,30 +1,37 @@
 {
 "scenarioInfo": {
-	"id": "threePageLegacy",
+	"id": "threePage4Hero",
 	"type": "DUNGEON",
-	"nameKey": "threePageLegacy.name",
-	"blurbKey": "threePageLegacy.blurb",
-	"extraDungeonModeTextKey": "threePageLegacy.extraDungeonModeText",
-	"extraDungeonModeTextTooltipKey": "threePageLegacy.extraDungeonModeTextTooltip",
-	"newGameImagePath": "assets/ui/reskin/newCampaign_omenroad3pageLegacy.png",
-	"sortNumber": 101,
-	"list": false,
+	"nameKey": "threePage4Hero.name",
+	"blurbKey": "threePage4Hero.blurb",
+	"extraDungeonModeTextKey": "threePage4Hero.extraDungeonModeText",
+	"extraDungeonModeTextTooltipKey": "threePage4Hero.extraDungeonModeTextTooltip",
+	"newGameImagePath": "assets/ui/reskin/newCampaign_omenroad3page.png",
+	"sortNumber": 102,
 	"perilAndOdesEnabled": true,
 	"rosterSlots": [
 		{
-			"type": "legacyHero",
+			"type": "greenhorn",
+			"archetype": "warrior",
+			"archetypeCustomizable": true,
 			"plotRoles": [ "party", "warrior" ]
 		},
 		{
-			"type": "legacyHero",
+			"type": "greenhorn",
+			"archetype": "hunter",
+			"archetypeCustomizable": true,
 			"plotRoles": [ "party", "hunter" ]
 		},
 		{
-			"type": "legacyHero",
+			"type": "greenhorn",
+			"archetype": "mystic",
+			"archetypeCustomizable": true,
 			"plotRoles": [ "party", "mystic" ]
 		},
 		{
-			"type": "legacyHero",
+			"type": "greenhorn",
+			"archetype": "warrior",
+			"archetypeCustomizable": true,
 			"plotRoles": [ "party", "hero4" ]
 		}
 	]
@@ -325,6 +332,7 @@
 	"recruit": {
 		"STUB": "Recruit",
 		"icon": "dungeonNode_recruit",
+		"specifyNodeVisuals": { "tooltipTextOverrideKey": "recruit" },
 		"otherOutcomes": {
 			"class": "DoAll",
 			"outcomes": [
@@ -345,9 +353,10 @@
 		"repeatableOutcomes": {
 			"class": "RecruitHero",
 			"startWithClass": true,
+			"allowLegacyHeroes": false,
 			"setEquipment": "chapterMinusOne"
 		},
-		"repeatableOutcomeTest": "lessThan(COUNT.party,5)"
+		"repeatableOutcomeTest": "lessThan(COUNT.party,4)"
 	},
 	"heal": {
 		"STUB": "Heal",
@@ -728,7 +737,8 @@
 					"randomTypes": true,
 					"amount": "10+(company.chapterNumber*3)+(party.numWithAspect.commonDeck_wisdom*2)"
 				}
-			]
+			],
+			"tags": [ "mainReward" ]
 		}
 	],
 	"ability": [
@@ -925,7 +935,7 @@
 			{
 				"elementId": 1677931609,
 				"node": {
-					"STUB": "bleh",
+					"STUB": "Start",
 					"icon": "dungeonButtonNext",
 					"specifyNodeVisuals": { "noTooltip": true },
 					"otherOutcomes": {
@@ -942,29 +952,57 @@
 								"globalId": "extraMissionCardPerChapter.3",
 								"value": "2"
 							},
-							{ "class": "SetGlobal", "globalId": "doomCardsPerFight", "value": "0" },
-							{
-								"class": "AddCalamities",
-								"STUB": "Legacy campaign needs to be harder.",
-								"skipProposePopup": true,
-								"calamitiesToAdd": [
-									{
-										"quantity": "10+(3*((((party.1.legacyTier+party.2.legacyTier)+party.3.legacyTier)+party.4.legacyTier)+5))",
-										"mainThreatHigherChance": false,
-										"equalCardsPerFlavor": true
-									}
-								]
-							},
-							{
-								"class": "Aspects",
-								"target": "company",
-								"addAspects": [
-									{ "id": "dungeonModeLegacyBossBuff", "value": "1" }
-								]
-							}
+							{ "class": "SetGlobal", "globalId": "doomCardsPerFight", "value": "0" }
 						]
 					},
 					"includeDefaultFinalOutcomes": false
+				},
+				"nextElements": [
+					{ "targetElementId": -856894118 }
+				]
+			},
+			{
+				"elementId": -856894118,
+				"x": 1,
+				"block": {
+					"STUB": "No hard fights, -1 strength",
+					"pathLength": "2",
+					"numberOfStartNodes": "2",
+					"numberOfEndNodes": "3",
+					"connectivity": "0.8",
+					"groups": [
+						{
+							"numberToPick": "1",
+							"nodes": [
+								{
+									"template": "resources",
+									"specifyFoes": { "modifyStrength": "-1" }
+								},
+								{
+									"template": "gear",
+									"specifyFoes": { "modifyStrength": "-1" }
+								}
+							]
+						},
+						{
+							"pickExactNumber": true,
+							"numberToPick": "1d2+1",
+							"nodes": [
+								{
+									"template": "ability",
+									"specifyFoes": { "modifyStrength": "-1" }
+								},
+								{
+									"template": "upgradeGear",
+									"specifyFoes": { "modifyStrength": "-1" }
+								},
+								{
+									"template": "combatBuff",
+									"specifyFoes": { "modifyStrength": "-1" }
+								}
+							]
+						}
+					]
 				},
 				"nextElements": [
 					{ "targetElementId": -2068329833 }
@@ -972,11 +1010,11 @@
 			},
 			{
 				"elementId": -2068329833,
-				"x": 1,
+				"x": 3,
 				"block": {
-					"STUB": "bleh",
-					"pathLength": "4",
-					"numberOfStartNodes": "2",
+					"STUB": "Group",
+					"pathLength": "2",
+					"numberOfStartNodes": "3",
 					"numberOfEndNodes": "4",
 					"connectivity": "0.8",
 					"groups": [
@@ -998,7 +1036,7 @@
 						},
 						{
 							"pickExactNumber": true,
-							"numberToPick": "1d3-1",
+							"numberToPick": "1d2-1",
 							"nodes": [
 								{
 									"template": "gearBetter",
@@ -1008,7 +1046,7 @@
 						},
 						{
 							"pickExactNumber": true,
-							"numberToPick": "1d2+1",
+							"numberToPick": "1d2",
 							"nodes": [
 								{
 									"template": "resources_extra",
@@ -1068,7 +1106,7 @@
 				"elementId": 1210046986,
 				"x": 6,
 				"block": {
-					"STUB": "bleh",
+					"STUB": "Group",
 					"pathLength": "3",
 					"numberOfStartNodes": "3",
 					"numberOfEndNodes": "2",
@@ -1130,21 +1168,21 @@
 					]
 				},
 				"nextElements": [
-					{ "targetElementId": -1430384656 },
-					{ "targetElementId": 223464603 }
+					{ "targetElementId": -693480387 },
+					{ "targetElementId": -1523324948 }
 				]
 			},
 			{
-				"elementId": -1430384656,
-				"x": 10,
+				"elementId": -693480387,
+				"x": 9,
 				"node": { "STUB": "Craft", "template": "craft" },
 				"nextElements": [
 					{ "targetElementId": 302877034 }
 				]
 			},
 			{
-				"elementId": 223464603,
-				"x": 10,
+				"elementId": -1523324948,
+				"x": 9,
 				"node": { "STUB": "Heal", "template": "heal" },
 				"nextElements": [
 					{ "targetElementId": 302877034 }
@@ -1152,7 +1190,7 @@
 			},
 			{
 				"elementId": 302877034,
-				"x": 11,
+				"x": 10,
 				"node": { "template": "boss" },
 				"nextElements": [
 					{ "targetElementId": -1211026178 }
@@ -1160,9 +1198,9 @@
 			},
 			{
 				"elementId": -1211026178,
-				"x": 12,
+				"x": 11,
 				"node": {
-					"STUB": "bleh",
+					"STUB": "End",
 					"icon": "dungeonButtonNext",
 					"includeDefaultFinalOutcomes": false,
 					"pageTransition": { "targetPageIndex": 1 }
@@ -1213,14 +1251,6 @@
 							{
 								"class": "AccumulateHealing",
 								"value": "(RECOVERY_RATE/20)+company.dungeon_progression_all_healingBetweenFights"
-							},
-							{
-								"class": "RecruitHero",
-								"startWithClass": true,
-								"free": true,
-								"legacyHeroCalamities": true,
-								"allowCancel": false,
-								"setEquipment": "tierOne"
 							},
 							{
 								"class": "Aspects",
@@ -1293,18 +1323,9 @@
 							"pickExactNumber": true,
 							"numberToPick": "1d2",
 							"nodes": [
-								{
-									"template": "nonCombat_gear",
-									"doNotSpawnAtPosition": [ 2, 5 ]
-								},
-								{
-									"template": "nonCombat_resources",
-									"doNotSpawnAtPosition": [ 2, 5 ]
-								},
-								{
-									"template": "heal",
-									"doNotSpawnAtPosition": [ 2, 5 ]
-								}
+								{ "template": "nonCombat_gear" },
+								{ "template": "nonCombat_resources" },
+								{ "template": "heal" }
 							]
 						},
 						{
@@ -1432,22 +1453,22 @@
 					]
 				},
 				"nextElements": [
-					{ "targetElementId": 1118042634 },
-					{ "targetElementId": -471452465 }
+					{ "targetElementId": -489187677 },
+					{ "targetElementId": 2090024376 }
 				]
 			},
 			{
-				"elementId": 1118042634,
+				"elementId": 2090024376,
 				"x": 11,
-				"node": { "STUB": "Craft", "template": "craft" },
+				"node": { "STUB": "Heal", "template": "heal" },
 				"nextElements": [
 					{ "targetElementId": 302877034 }
 				]
 			},
 			{
-				"elementId": -471452465,
+				"elementId": -489187677,
 				"x": 11,
-				"node": { "STUB": "Heal", "template": "heal" },
+				"node": { "STUB": "Craft", "template": "craft" },
 				"nextElements": [
 					{ "targetElementId": 302877034 }
 				]
@@ -1548,14 +1569,14 @@
 						{
 							"numberToPick": "1",
 							"nodes": [
-								{ "template": "heal" },
-								{ "STUB": "Gear", "template": "nonCombat_gear" },
-								{ "STUB": "Resources", "template": "nonCombat_resources" }
+								{ "template": "nonCombat_gear" },
+								{ "template": "nonCombat_resources" },
+								{ "template": "heal" }
 							]
 						},
 						{
 							"pickExactNumber": true,
-							"numberToPick": "lessThan(COUNT.party,5)",
+							"numberToPick": "lessThan(COUNT.party,4)",
 							"nodes": [
 								{ "template": "recruit" }
 							]
@@ -1587,18 +1608,9 @@
 							"pickExactNumber": true,
 							"numberToPick": "1d2",
 							"nodes": [
-								{
-									"template": "nonCombat_gear",
-									"doNotSpawnAtPosition": [ 2, 5 ]
-								},
-								{
-									"template": "nonCombat_resources",
-									"doNotSpawnAtPosition": [ 2, 5 ]
-								},
-								{
-									"template": "heal",
-									"doNotSpawnAtPosition": [ 2, 5 ]
-								}
+								{ "template": "nonCombat_gear" },
+								{ "template": "nonCombat_resources" },
+								{ "template": "heal" }
 							]
 						},
 						{
@@ -1682,18 +1694,9 @@
 							"pickExactNumber": true,
 							"numberToPick": "1d2-1",
 							"nodes": [
-								{
-									"template": "nonCombat_gear",
-									"doNotSpawnAtPosition": [ 7, 9 ]
-								},
-								{
-									"template": "nonCombat_resources",
-									"doNotSpawnAtPosition": [ 7, 9 ]
-								},
-								{
-									"template": "heal",
-									"doNotSpawnAtPosition": [ 7, 9 ]
-								}
+								{ "template": "nonCombat_gear" },
+								{ "template": "nonCombat_resources" },
+								{ "template": "heal" }
 							]
 						},
 						{

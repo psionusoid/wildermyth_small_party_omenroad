@@ -1,13 +1,13 @@
 {
 "scenarioInfo": {
-	"id": "threePageLegacy",
+	"id": "threePageLegacyHighCalamity",
 	"type": "DUNGEON",
-	"nameKey": "threePageLegacy.name",
-	"blurbKey": "threePageLegacy.blurb",
-	"extraDungeonModeTextKey": "threePageLegacy.extraDungeonModeText",
-	"extraDungeonModeTextTooltipKey": "threePageLegacy.extraDungeonModeTextTooltip",
+	"nameKey": "threePageLegacyHighCalamity.name",
+	"blurbKey": "threePageLegacyHighCalamity.blurb",
+	"extraDungeonModeTextKey": "threePageLegacyHighCalamity.extraDungeonModeText",
+	"extraDungeonModeTextTooltipKey": "threePageLegacyHighCalamity.extraDungeonModeTextTooltip",
 	"newGameImagePath": "assets/ui/reskin/newCampaign_omenroad3pageLegacy.png",
-	"sortNumber": 101,
+	"sortNumber": 110,
 	"list": false,
 	"perilAndOdesEnabled": true,
 	"rosterSlots": [
@@ -949,7 +949,7 @@
 								"skipProposePopup": true,
 								"calamitiesToAdd": [
 									{
-										"quantity": "10+(3*((((party.1.legacyTier+party.2.legacyTier)+party.3.legacyTier)+party.4.legacyTier)+5))",
+										"quantity": "100",
 										"mainThreatHigherChance": false,
 										"equalCardsPerFlavor": true
 									}
